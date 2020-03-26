@@ -76,7 +76,9 @@
                 scrollTo: 'libraries/scrollTo.min',
                 bowser: 'libraries/bowser',
                 'enum': 'libraries/enum',
-                jqueryMobile: 'libraries/jquery.mobile.custom'
+                jqueryMobile: 'libraries/jquery.mobile.custom',
+                codemirror: 'libraries/codemirror/codemirror',
+                lottie: 'libraries/lottie.min'                
             }
         });
         loadJQuery();
@@ -122,7 +124,9 @@
             'scrollTo',
             'bowser',
             'enum',
-            'templates'
+            'templates',
+            'codemirror',
+            'lottie'
         ], loadAdapt);
     }
 
@@ -131,7 +135,15 @@
         $.ajaxPrefilter(function( options ) {
             options.crossDomain = true;
         });
-        loadScript('adapt/js/adapt.min.js');
+        loadThirdPartyPlugins();
+    }
+
+    function loadThirdPartyPlugins() {
+        require(['codemirror'], function(CodeMirror){
+            if (CodeMirror && CodeMirror.Init)
+                require(['libraries/codemirror/codemirror-themes-dep'])
+            loadScript('adapt/js/adapt.min.js');
+        })
     }
 
     //1. Load requirejs then set it up

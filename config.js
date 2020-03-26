@@ -12,8 +12,9 @@ require.config({
         scrollTo: 'empty:',
         libraries: 'empty:',
         bowser: 'empty:',
+        codemirror: 'empty:',
+        lottie: 'empty:',
         'core/js/libraries/bowser': 'empty:',
-        'coreJS/libraries/bowser': 'empty:'
     },
     map: {
         '*': {
@@ -21,7 +22,14 @@ require.config({
             coreViews: 'core/js/views',
             coreModels: 'core/js/models',
             coreCollections: 'core/js/collections',
-            coreHelpers: 'core/js/helpers'
-        }
-    }
-});
+            coreHelpers: 'core/js/helpers',
+        },
+    },
+    packages: [
+        {
+            name: 'diff_match_patch',
+            location: 'components/adapt-codi-codecomparator/libraries',
+            main: 'diff_match_patch',
+        },
+    ],
+})
