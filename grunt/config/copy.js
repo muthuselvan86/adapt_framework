@@ -38,9 +38,12 @@ module.exports = function(grunt, options) {
       files: [
         {
           expand: true,
-          src: ['<%= languages %>/*.<%= jsonext %>'],
+          src: ['<%= languages %>/*.<%= jsonext %>', '*.<%= jsonext %>'],
           cwd: '<%= sourcedir %>course/',
-          dest: '<%= outputdir %>course/'
+          dest: '<%= outputdir %>course/',
+          filter: function(file) {
+            return file.indexOf('_') === -1;
+          }
         }
       ]
     }
@@ -64,6 +67,7 @@ module.exports = function(grunt, options) {
           src: ['<%= sourcedir %>components/**/assets/**'],
           dest: '<%= outputdir %>assets/',
           filter: function(filepath) {
+            grunt.log.ok(`*** Please Note : **** '${grunt.config('languages')}'`);
             return grunt.config('helpers')
               .includedFilter(filepath);
           },

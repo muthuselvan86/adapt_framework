@@ -69,7 +69,8 @@ class Language {
       const isManifest = (dataFilePath === this.manifestPath);
       // Skip file if it is the Authoring Tool import/export asset manifest
       const isAATAssetJSON = (dataFilePath === 'assets.json');
-      return !isManifest && !isAATAssetJSON;
+      const isCodiJson = dataFilePath.indexOf('_') > -1;
+      return !isManifest && !isAATAssetJSON && !isCodiJson;
     });
 
     dataFiles.forEach(jsonFileName => {

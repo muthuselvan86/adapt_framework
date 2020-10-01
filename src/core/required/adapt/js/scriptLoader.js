@@ -77,7 +77,9 @@
         scrollTo: 'libraries/scrollTo.min',
         bowser: 'libraries/bowser',
         'enum': 'libraries/enum',
-        jqueryMobile: 'libraries/jquery.mobile.custom'
+        jqueryMobile: 'libraries/jquery.mobile.custom',
+        codemirror: 'libraries/codemirror/codemirror',
+        lottie: 'libraries/lottie.min'
       }
     });
     loadJQuery();
@@ -140,7 +142,16 @@
     $.ajaxPrefilter(function(options) {
       options.crossDomain = true;
     });
+    loadThirdPartyPlugins();
     loadScript('adapt/js/adapt.min.js');
+  }
+
+  function loadThirdPartyPlugins() {
+    require(['codemirror'], function(CodeMirror) {
+      if (CodeMirror && CodeMirror.Init) {
+        require(['libraries/codemirror/codemirror-themes-dep']);
+      }
+    });
   }
 
   // 1. Load requirejs then set it up
